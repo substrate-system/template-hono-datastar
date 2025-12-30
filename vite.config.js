@@ -2,8 +2,8 @@
 import { defineConfig } from 'vite'
 import browserslist from 'browserslist'
 import { browserslistToTargets } from 'lightningcss'
-import preact from '@preact/preset-vite'
 import { cloudflare } from '@cloudflare/vite-plugin'
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
     return {
@@ -19,10 +19,6 @@ export default defineConfig(({ mode }) => {
         },
         plugins: [
             cloudflare(),
-            preact({
-                devtoolsInProd: false,
-                prefreshEnabled: true,
-            }),
         ],
         // https://github.com/vitejs/vite/issues/8644#issuecomment-1159308803
         esbuild: {

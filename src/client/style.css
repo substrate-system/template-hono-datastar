@@ -28,10 +28,51 @@ button.btn, a.btn {
     border: 1px solid;
     border-radius: 0;
     padding: 0.5rem 1rem;
-}
+    min-width: 6rem;
+    text-decoration: none;
+    background: none;
+    font-size: 1rem;
+    color: black;
+    outline: 1px solid transparent;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    transform: translateY(1px);
 
+    &:hover {
+        outline: 1px solid;
+        transform: translateY(0);
+    }
+
+    &:active {
+        transform: translateY(2px);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+
+        &:hover {
+            transform: translateY(1px);
+            outline-color: transparent;
+        }
+    }
+}
 
 pre {
     padding: 2rem;
     background-color: #d3d3d363;
+}
+
+.route {
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+/* Hide elements when data-show evaluates to false */
+[data-show] {
+    &:not([style*="display: none"]) {
+        display: block;
+    }
 }
