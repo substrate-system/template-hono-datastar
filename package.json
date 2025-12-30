@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@starfederation/datastar-sdk": "^1.0.0-RC.3",
+    "@substrate-system/dom": "^0.1.13",
     "hono": "^4.11.3"
   },
   "devDependencies": {

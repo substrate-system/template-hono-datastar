@@ -14,7 +14,7 @@
         <h2>the API response</h2>
         <pre
             id="api-response"
-            data-on-load="@get('/api/helloworld')"
+            data-on:load="@get('/api/helloworld')"
             data-text="$apiMessage ? $apiMessage : 'Loading...'"
         ></pre>
 
@@ -22,22 +22,22 @@
         <ul>
             <li>
                 <a href="/"
-                   data-on-click__prevent="$route = '/'"
+                   data-on:click.prevent="$route = '/'"
                 >home</a>
             </li>
             <li>
                 <a href="/aaa"
-                   data-on-click__prevent="$route = '/aaa'"
+                   data-on:click.prevent="$route = '/aaa'"
                 >aaa</a>
             </li>
             <li>
                 <a href="/bbb"
-                   data-on-click__prevent="$route = '/bbb'"
+                   data-on:click.prevent="$route = '/bbb'"
                 >bbb</a>
             </li>
             <li>
                 <a href="/ccc"
-                   data-on-click__prevent="$route = '/ccc'"
+                   data-on:click.prevent="$route = '/ccc'"
                 >ccc</a>
             </li>
         </ul>
@@ -47,12 +47,12 @@
             <div>count: <span data-text="$count"></span></div>
             <ul class="count-controls">
                 <li>
-                    <button class="btn" data-on-click="$count++">
+                    <button class="btn" data-on:click="$count++">
                         <span class="btn-content">plus</span>
                     </button>
                 </li>
                 <li>
-                    <button class="btn" data-on-click="$count--">
+                    <button class="btn" data-on:click="$count--">
                         <span class="btn-content">minus</span>
                     </button>
                 </li>
@@ -77,7 +77,7 @@
 
     <!-- Datastar CDN - npm package no longer published -->
     <!-- See: https://github.com/starfederation/datastar/issues/742 -->
-    <script type="module" src="https://cdn.jsdelivr.net/gh/starfederation/datastar@v1.0.0-RC.7/bundles/datastar.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/gh/starfederation/datastar@1.0.0-RC.7/bundles/datastar.js"></script>
     <script type="module" src="./src/client/index.ts"></script>
 </body>
 </html>
