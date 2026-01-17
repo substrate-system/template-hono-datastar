@@ -20,7 +20,7 @@
     "@substrate-system/button": "^0.0.31",
     "@substrate-system/css-normalize": "^0.0.13",
     "@substrate-system/dom": "^0.1.13",
-    "hono": "^4.11.3"
+    "hono": "^4.11.4"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.19.0",
