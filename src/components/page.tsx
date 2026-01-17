@@ -4,18 +4,20 @@ interface PageProps {
     title:string
     signals?:Record<string, unknown>
     isDev?:boolean
+    assets?: { css:string, js:string }
 }
 
 export const Page:FC<PropsWithChildren<PageProps>> = ({
     title,
     signals = {},
     isDev = false,
+    assets,
     children
 }) => {
     // In dev, Vite serves the source file directly
-    // In production, use the built assets
-    const cssPath = isDev ? '/src/style.css' : '/client/assets/index.css'
-    const jsPath = isDev ? '/src/client/index.ts' : '/client/assets/index.js'
+    // In production, use the built assets (with content hash for caching)
+    const cssPath = assets?.css || (isDev ? '/src/style.css' : '/client/assets/index.css')
+    const jsPath = assets?.js || (isDev ? '/src/client/index.ts' : '/client/assets/index.js')
 
     return (
         <html lang="en">

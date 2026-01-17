@@ -15,10 +15,11 @@ const signals = {
 
 interface HomePageProps {
     isDev?:boolean
+    assets?: { css:string, js:string }
 }
 
-export const HomePage:FC<HomePageProps> = ({ isDev }) => (
-    <Page title="Datastar Demo" signals={signals} isDev={isDev}>
+export const HomePage:FC<HomePageProps> = ({ isDev, assets }) => (
+    <Page title="Datastar Demo" signals={signals} isDev={isDev} assets={assets}>
         <header class="hero">
             <h1>Datastar Demo</h1>
             <p class="subtitle">

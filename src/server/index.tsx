@@ -8,6 +8,16 @@ type Bindings = {
     NODE_ENV?:string
 }
 
+interface ViteManifest {
+    'index.html'?:{
+        file:string
+        css?:string[]
+    }
+}
+
+// Cache the manifest in memory
+let cachedAssets: { css:string, js:string } | null = null
+
 const app = new Hono<{ Bindings:Bindings }>()
 
 app.use('/api/*', cors())
@@ -15,9 +25,14 @@ app.use('/api/*', cors())
 /**
  * Main page - server-rendered JSX
  */
-app.get('/', (c) => {
-    const isDev = c.env?.NODE_ENV === 'development' || !c.env?.ASSETS
-    return c.html(<HomePage isDev={isDev} />)
+app.get('/', async (c) => {
+    // Use Vite's built-in dev detection
+    if (import.meta.env.DEV) {
+        return c.html(<HomePage isDev={true} />)
+    }
+
+    const assets = await getAssetPaths(c.env.ASSETS)
+    return c.html(<HomePage assets={assets} />)
 })
 
 /**
@@ -142,3 +157,27 @@ app.all('*', (c) => {
 })
 
 export default app
+
+async function getAssetPaths (assets:Fetcher):Promise<{ css:string, js:string }> {
+    if (cachedAssets) return cachedAssets
+
+    try {
+        const manifestUrl = new URL('/client/.vite/manifest.json', 'https://dummy')
+        const res = await assets.fetch(manifestUrl.pathname)
+        if (res.ok) {
+            const manifest = await res.json() as ViteManifest
+            const entry = manifest['index.html']
+            if (entry) {
+                cachedAssets = {
+                    js: `/client/${entry.file}`,
+                    css: entry.css?.[0] ? `/client/${entry.css[0]}` : ''
+                }
+                return cachedAssets
+            }
+        }
+    } catch {
+        // Fall back to non-hashed paths
+    }
+
+    return { css: '/client/assets/index.css', js: '/client/assets/index.js' }
+}
