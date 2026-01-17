@@ -44,6 +44,14 @@ export default defineConfig(({ mode }) => {
             outDir: './public',
             emptyOutDir: true,
             sourcemap: 'inline',
+            rollupOptions: {
+                output: {
+                    // Use predictable filenames without content hash
+                    entryFileNames: 'assets/[name].js',
+                    chunkFileNames: 'assets/[name].js',
+                    assetFileNames: 'assets/[name].[ext]'
+                }
+            }
         }
     }
 })

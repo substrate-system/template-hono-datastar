@@ -5,6 +5,7 @@ import { HomePage } from '../home-page.js'
 
 type Bindings = {
     ASSETS:Fetcher
+    NODE_ENV?:string
 }
 
 const app = new Hono<{ Bindings:Bindings }>()
@@ -15,7 +16,8 @@ app.use('/api/*', cors())
  * Main page - server-rendered JSX
  */
 app.get('/', (c) => {
-    return c.html(<HomePage />)
+    const isDev = c.env?.NODE_ENV === 'development' || !c.env?.ASSETS
+    return c.html(<HomePage isDev={isDev} />)
 })
 
 /**

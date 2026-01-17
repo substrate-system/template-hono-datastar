@@ -13,8 +13,12 @@ const signals = {
     timestamp: ''
 }
 
-export const HomePage:FC = () => (
-    <Page title="Datastar Demo" signals={signals}>
+interface HomePageProps {
+    isDev?:boolean
+}
+
+export const HomePage:FC<HomePageProps> = ({ isDev }) => (
+    <Page title="Datastar Demo" signals={signals} isDev={isDev}>
         <header class="hero">
             <h1>Datastar Demo</h1>
             <p class="subtitle">
