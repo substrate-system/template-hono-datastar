@@ -27,7 +27,7 @@
 	},
 	"vars": {
 		"NODE_ENV": "development",
-		"DOMAIN": "abc.com",
+		"DOMAIN": "template-hono-datastar.nichoth.workers.dev",
 	},
 	"observability": {
 		"enabled": true
