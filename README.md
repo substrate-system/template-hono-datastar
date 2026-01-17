@@ -26,8 +26,24 @@ dev server.
 Vite gives us HMR and bundling. The Vite plugin runs the worker code, which
 is why the worker server works locally.
 
-Vite build to `public/`, but we do not use that folder during development.
+Vite builds to `public/`, but we do not use that folder during development.
 
-In the worker file, it checks if we are in local dev or production.
-In dev, `ASSETS` doesn't exist; it returns notFound() and Vite handles it.
-In production, ASSETS does exist, so it serves the static asset.
+
+## Components
+
+In the worker file (`./src/server/index.tsx`), it checks if we are in local dev
+or production. In dev, `ASSETS` doesn't exist; it returns `notFound()` and Vite
+handles it. In production, `ASSETS` does exist, so it serves the static asset.
+
+When you run npm start, the Cloudflare Vite plugin routes requests to your
+Hono server at `src/server/index.tsx:126`, which renders the Page component.
+This Page component uses the `.tsx` components (TimestampCard, GreetingCard,
+CounterCard, QuoteCard) which are server-side rendered.
+
+
+## The Datastar SSR pattern
+
+* Server renders the full HTML with components
+* `data-signals` initializes the reactive state
+* Datastar library (loaded via CDN) handles client-side reactivity
+* API endpoints return SSE responses that update signals
