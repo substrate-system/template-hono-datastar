@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { ServerSentEventGenerator } from '@starfederation/datastar-sdk/web'
-import { Page } from '../components/page'
+import { HomePage } from '../home-page.js'
 
 type Bindings = {
     ASSETS:Fetcher
@@ -10,6 +10,13 @@ type Bindings = {
 const app = new Hono<{ Bindings:Bindings }>()
 
 app.use('/api/*', cors())
+
+/**
+ * Main page - server-rendered JSX
+ */
+app.get('/', (c) => {
+    return c.html(<HomePage />)
+})
 
 /**
  * Health check
@@ -118,13 +125,6 @@ app.post('/api/quote', () => {
 
 app.get('/health', c => {
     return c.json({ status: 'ok' })
-})
-
-/**
- * Main page - server-rendered JSX
- */
-app.get('/', (c) => {
-    return c.html(<Page />)
 })
 
 /**

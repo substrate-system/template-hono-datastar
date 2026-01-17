@@ -1,6 +1,6 @@
 @import url("@substrate-system/css-normalize");
-@import url("../components/card.css");
-@import url("../components/button.css");
+@import url("./components/card.css");
+@import url("./components/button.css");
 
 :root {
     --color-bg: #fafafa;
@@ -30,12 +30,13 @@ body {
 
     & p {
         margin-bottom: 1rem;
+        line-height: 1.4;
     }
 }
 
 .hero {
     text-align: center;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
 
     & h1 {
         margin-bottom: 0.5rem;

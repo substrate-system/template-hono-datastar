@@ -7,9 +7,23 @@ This uses [Hono](https://hono.dev/) to keep any application state
 (it uses in-memory state only), and clicks result in a request to the server,
 which sends back the updated data.
 
+<details><summary><h2>Contents</h2></summary>
+
+<!-- toc -->
+
+- [Develop](#develop)
+  * [Local Dev](#local-dev)
+- [Components](#components)
+  * [`page.tsx`](#pagetsx)
+- [The Datastar SSR pattern](#the-datastar-ssr-pattern)
+
+<!-- tocstop -->
+
+</details>
+
 ## Develop
 
-Start a server at `localhost:8888`:
+Start a Vite server at `localhost:8888`.
 
 ```sh
 npm start
@@ -40,6 +54,22 @@ Hono server at `src/server/index.tsx:126`, which renders the Page component.
 This Page component uses the `.tsx` components (TimestampCard, GreetingCard,
 CounterCard, QuoteCard) which are server-side rendered.
 
+### `page.tsx`
+
+The `page.tsx` is a layout skeleton that accepts props.
+
+```ts
+export const Page:FC<PropsWithChildren<PageProps>> = ({
+    title,
+    signals = {},
+    children
+})
+```
+
+Any site pages should extend this template, and pass in content and signals.
+An example is [./src/components/home-page.tsx](./src/components/home-page.tsx).
+
+---
 
 ## The Datastar SSR pattern
 
