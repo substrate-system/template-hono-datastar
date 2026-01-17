@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "main": "public/index.js",
   "scripts": {
-    "lint": "eslint \"./**/*.{ts,js}\"",
+    "lint": "eslint \"./**/*.{ts,js,tsx}\"",
     "build-tests": "esbuild test/index.ts --bundle --format=cjs --keep-names > test/test-bundle.js",
     "test": "esbuild ./test/index.ts --bundle | tapout",
     "build": "mkdir -p ./public && rm -rf ./public/* && vite build",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@starfederation/datastar-sdk": "^1.0.0-RC.3",
+    "@substrate-system/button": "^0.0.31",
     "@substrate-system/css-normalize": "^0.0.13",
     "@substrate-system/dom": "^0.1.13",
     "hono": "^4.11.3"

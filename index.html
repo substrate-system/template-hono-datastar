@@ -20,17 +20,21 @@
             <p class="subtitle">Server-rendered HTML with reactive SSE updates</p>
         </header>
 
+        <p>
+            This page demonstrates using the server for all state. There is no
+            client side JS at all here (except the datastar library).
+        </p>
+
         <main class="cards">
             <section class="card">
                 <h2>Live Server Time</h2>
-                <p>Click to fetch the current server timestamp via SSE:</p>
+                <p>Click to fetch the current server timestamp via SSE</p>
                 <button class="btn" data-on:click="@post('/api/time')">
                     Get Server Time
                 </button>
                 <div
                     class="timestamp"
-                    data-show="$timestamp"
-                    data-text="$timestamp"
+                    data-text="$timestamp || '-'"
                 ></div>
             </section>
 
@@ -47,13 +51,21 @@
                         Say Hello
                     </button>
                 </form>
-                <div class="greeting" data-show="$greeting" data-text="$greeting">
+                <div class="greeting" data-text="$greeting">
                 </div>
             </section>
 
             <section class="card">
                 <h2>Server-Synced Counter</h2>
-                <p>This counter syncs with the server on each click:</p>
+                <p>
+                    This counter syncs with the server on each click.
+                    Each button click calls the server,
+                    (<code>data-on:click="@post('/api/counter/decrement')"</code>)
+                    and the server sends back a&nbsp;
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events">
+                        Server-Sent Event
+                    </a> with the new count value.
+                </p>
                 <div class="counter-display" data-text="$count"></div>
                 <div class="counter-buttons">
                     <button

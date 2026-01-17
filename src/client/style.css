@@ -22,10 +22,13 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     max-width: 40rem;
     margin: 0 auto;
-    padding: 2rem;
     background: var(--color-bg);
     color: var(--color-text);
     line-height: 1.6;
+
+    & p {
+        margin-bottom: 1rem;
+    }
 }
 
 .hero {
@@ -88,16 +91,17 @@ input[type="text"] {
 }
 
 .btn {
-    background: var(--color-primary);
-    color: var(--color-white);
-    border: none;
+    color: black;
+    background-color: transparent;
+    border: 1px solid;
     padding: 0.5rem 1rem;
     cursor: pointer;
     transition: all 0.2s;
+    outline: 1px solid transparent;
 
     &:hover {
         transform: translateY(-2px);
-        background: var(--color-primary-dark);
+        outline-color: black;
     }
 
     &:active {
@@ -125,6 +129,7 @@ input[type="text"] {
 .greeting {
     color: var(--color-success);
     padding: 1rem;
+    min-height: 3.2rem;
     background: var(--color-success-bg);
     text-align: center;
     margin-top: 1rem;
@@ -134,7 +139,6 @@ input[type="text"] {
     font-family: ui-monospace, monospace;
     background: var(--color-neutral-bg);
     padding: 0.5rem 1rem;
-    display: inline-block;
     margin-top: 1rem;
 }
 
