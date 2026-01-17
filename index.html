@@ -3,81 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Example</title>
+    <title>Datastar Demo</title>
     <link rel="stylesheet" href="./src/client/style.css">
 </head>
 
 <body>
-    <div id="root" data-signals="{ count: 0, route: '/', apiMessage: '' }">
-        <h1>example</h1>
+    <div id="root" data-signals="{
+        count: 0,
+        name: '',
+        greeting: '',
+        quote: '',
+        timestamp: ''
+    }">
+        <header class="hero">
+            <h1>Datastar Demo</h1>
+            <p class="subtitle">Server-rendered HTML with reactive SSE updates</p>
+        </header>
 
-        <h2>the API response</h2>
-        <pre
-            id="api-response"
-            data-on:load="@get('/api/helloworld')"
-            data-text="$apiMessage ? $apiMessage : 'Loading...'"
-        ></pre>
+        <main class="cards">
+            <section class="card">
+                <h2>Live Server Time</h2>
+                <p>Click to fetch the current server timestamp via SSE:</p>
+                <button class="btn" data-on:click="@post('/api/time')">
+                    Get Server Time
+                </button>
+                <div
+                    class="timestamp"
+                    data-show="$timestamp"
+                    data-text="$timestamp"
+                ></div>
+            </section>
 
-        <h2>routes</h2>
-        <ul>
-            <li>
-                <a href="/"
-                   data-on:click.prevent="$route = '/'"
-                >home</a>
-            </li>
-            <li>
-                <a href="/aaa"
-                   data-on:click.prevent="$route = '/aaa'"
-                >aaa</a>
-            </li>
-            <li>
-                <a href="/bbb"
-                   data-on:click.prevent="$route = '/bbb'"
-                >bbb</a>
-            </li>
-            <li>
-                <a href="/ccc"
-                   data-on:click.prevent="$route = '/ccc'"
-                >ccc</a>
-            </li>
-        </ul>
-
-        <h2>counter</h2>
-        <div>
-            <div>count: <span data-text="$count"></span></div>
-            <ul class="count-controls">
-                <li>
-                    <button class="btn" data-on:click="$count++">
-                        <span class="btn-content">plus</span>
+            <section class="card">
+                <h2>Personalized Greeting</h2>
+                <p>Enter your name and get a greeting from the server:</p>
+                <form>
+                    <input type="text" placeholder="Your name" data-bind:name>
+                    <button
+                        class="btn"
+                        type="button"
+                        data-on:click="@post('/api/greet')"
+                    >
+                        Say Hello
                     </button>
-                </li>
-                <li>
-                    <button class="btn" data-on:click="$count--">
-                        <span class="btn-content">minus</span>
-                    </button>
-                </li>
-            </ul>
-        </div>
+                </form>
+                <div class="greeting" data-show="$greeting" data-text="$greeting">
+                </div>
+            </section>
 
-        <div id="route-content">
-            <div data-show="$route === '/'">
-                <div class="route">home route</div>
-            </div>
-            <div data-show="$route === '/aaa'">
-                <h2>aaa</h2>
-            </div>
-            <div data-show="$route === '/bbb'">
-                <h2>bbb</h2>
-            </div>
-            <div data-show="$route === '/ccc'">
-                <h2>ccc</h2>
-            </div>
-        </div>
+            <section class="card">
+                <h2>Server-Synced Counter</h2>
+                <p>This counter syncs with the server on each click:</p>
+                <div class="counter-display" data-text="$count"></div>
+                <div class="counter-buttons">
+                    <button
+                        class="btn"
+                        data-on:click="@post('/api/counter/decrement')"
+                    >&ndash;</button>
+                    <button
+                        class="btn"
+                        data-on:click="@post('/api/counter/reset')"
+                    >
+                        Reset
+                    </button>
+                    <button
+                        class="btn"
+                        data-on:click="@post('/api/counter/increment')"
+                    >
+                        +
+                    </button>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Random Quote</h2>
+                <p>Fetch a random quote from the server:</p>
+                <button class="btn" data-on:click="@post('/api/quote')">
+                    Get Quote
+                </button>
+                <div
+                    class="quote-box"
+                    data-show="$quote"
+                    data-text="$quote"
+                ></div>
+            </section>
+        </main>
     </div>
 
-    <!-- Datastar CDN - npm package no longer published -->
-    <!-- See: https://github.com/starfederation/datastar/issues/742 -->
-    <script type="module" src="https://cdn.jsdelivr.net/gh/starfederation/datastar@1.0.0-RC.7/bundles/datastar.js"></script>
+    <script
+        type="module"
+        src="https://cdn.jsdelivr.net/gh/starfederation/datastar@1.0.0-RC.7/bundles/datastar.js"
+    ></script>
     <script type="module" src="./src/client/index.ts"></script>
 </body>
 </html>
