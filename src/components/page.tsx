@@ -15,7 +15,6 @@ export const Page:FC<PropsWithChildren<PageProps>> = ({
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <title>{title}</title>
-            <link rel="stylesheet" href="/src/style.css" />
         </head>
         <body>
             <div id="root" data-signals={JSON.stringify(signals)}>
