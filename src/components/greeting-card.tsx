@@ -1,9 +1,11 @@
 import { FC } from 'hono/jsx'
+import { Card } from './card'
 
 export const GreetingCard: FC = () => (
-    <section class="card">
-        <h2>Personalized Greeting</h2>
-        <p>Enter your name and get a greeting from the server:</p>
+    <Card
+        title="Personalized Greeting"
+        description="Enter your name and get a greeting from the server:"
+    >
         <form>
             <input type="text" placeholder="Your name" {...{ 'data-bind:name': '' }} />
             <button
@@ -15,5 +17,5 @@ export const GreetingCard: FC = () => (
             </button>
         </form>
         <div class="greeting" {...{ 'data-text': "$greeting || '-'" }}></div>
-    </section>
+    </Card>
 )

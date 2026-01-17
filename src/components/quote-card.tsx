@@ -1,12 +1,14 @@
 import { FC } from 'hono/jsx'
+import { Card } from './card'
 
 export const QuoteCard: FC = () => (
-    <section class="card">
-        <h2>Random Quote</h2>
-        <p>Fetch a random quote from the server:</p>
+    <Card
+        title="Random Quote"
+        description="Fetch a random quote from the server:"
+    >
         <button class="btn" {...{ 'data-on:click': "@post('/api/quote')" }}>
             Get Quote
         </button>
         <div class="quote-box" {...{ 'data-text': "$quote || '-'" }}></div>
-    </section>
+    </Card>
 )

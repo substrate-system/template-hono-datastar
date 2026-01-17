@@ -1,9 +1,11 @@
 import { FC } from 'hono/jsx'
+import { Card } from './card'
 
 export const CounterCard: FC = () => (
-    <section class="card">
-        <h2>Server-Synced Counter</h2>
-        <p>This counter syncs with the server on each click:</p>
+    <Card
+        title="Server-Synced Counter"
+        description="This counter syncs with the server on each click:"
+    >
         <div class="counter-display" {...{ 'data-text': '$count' }}></div>
         <div class="counter-buttons">
             <button
@@ -23,5 +25,5 @@ export const CounterCard: FC = () => (
                 +
             </button>
         </div>
-    </section>
+    </Card>
 )
