@@ -1,11 +1,11 @@
 import type { FC, PropsWithChildren } from 'hono/jsx'
 
 interface CardProps {
-    title: string
-    description?: string
+    title:string
+    description?:string
 }
 
-export const Card: FC<PropsWithChildren<CardProps>> = ({
+export const Card:FC<PropsWithChildren<CardProps>> = ({
     title,
     description,
     children
