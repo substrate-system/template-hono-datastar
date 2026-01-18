@@ -31,9 +31,9 @@ app.use('/api/*', cors())
  * Main page - server-rendered JSX
  */
 app.get('/', (c) => {
-    console.log('import meta env', !!import.meta.env.DEV)
+    const isDev = c.env.NODE_ENV !== 'production'
 
-    if (import.meta.env.DEV) {
+    if (isDev) {
         return c.html(<HomePage isDev={true} />)
     }
 
