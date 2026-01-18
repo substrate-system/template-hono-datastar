@@ -15,9 +15,10 @@ interface ViteManifest {
     }
 }
 
-// Import manifest at build time (placeholder exists before build, real manifest after client build)
+// Import manifest at build time
+// (placeholder exists before build, real manifest after client build)
 import manifestJson from '../../public/client/vite-manifest.json'
-const manifest: ViteManifest = manifestJson
+const manifest:ViteManifest = manifestJson
 
 // Cache the computed asset paths
 let cachedAssets:{ css:string, js:string }|null = null
