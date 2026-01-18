@@ -42,24 +42,8 @@ export default defineConfig(({ mode }) => {
             minify: mode === 'production',
             outDir: './public',
             emptyOutDir: true,
-            environments: {
-                client: {
-                    build: {
-                        rollupOptions: {
-                            input: {
-                                main: 'index.html',
-                            }
-                        }
-                    }
-                }
-            },
-            // rollupOptions: {
-            //     input: {
-            //         main: 'index.html',
-            //     }
-            // },
             sourcemap: 'inline',
-            manifest: true,
+            manifest: 'vite-manifest.json',
         }
     }
 })

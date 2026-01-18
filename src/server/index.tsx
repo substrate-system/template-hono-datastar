@@ -15,7 +15,11 @@ interface ViteManifest {
     }
 }
 
-// Cache the manifest in memory
+// Import manifest at build time (placeholder exists before build, real manifest after client build)
+import manifestJson from '../../public/client/vite-manifest.json'
+const manifest: ViteManifest = manifestJson
+
+// Cache the computed asset paths
 let cachedAssets:{ css:string, js:string }|null = null
 
 const app = new Hono<{ Bindings:Bindings }>()
@@ -25,21 +29,13 @@ app.use('/api/*', cors())
 /**
  * Main page - server-rendered JSX
  */
-app.get('/', async (c) => {
-    // Use Vite's built-in dev detection
+app.get('/', (c) => {
     if (import.meta.env.DEV) {
         return c.html(<HomePage isDev={true} />)
     }
 
-    const assets = await getAssetPaths(c.env.ASSETS)
-    console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', assets)
+    const assets = getAssetPaths()
     return c.html(<HomePage assets={assets} />)
-})
-
-app.get('/client/.vite/manifest.json', async (c) => {
-    const assets = c.env.ASSETS
-    const res = await assets.fetch(c.req.raw)
-    console.log('ressssssssssssssssssss', res)
 })
 
 /**
@@ -165,39 +161,20 @@ app.all('*', (c) => {
 
 export default app
 
-async function getAssetPaths (assets:Fetcher):Promise<{ css:string, js:string }> {
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', cachedAssets)
+function getAssetPaths ():{ css:string, js:string } {
     if (cachedAssets) return cachedAssets
 
-    const url = new URL('/client/.vite/manifest.json', 'http://dev.assets')
-
-    console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
-    try {
-        const res = await assets.fetch(url)
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', res)
-        console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz')
-        if (res.ok) {
-            let manifest:ViteManifest
-            try {
-                const text = await res.text()
-                console.log('the text......', text)
-                manifest = JSON.parse(text)
-            } catch (err) {
-                console.log('errrrrrrrrrrrrrrrrrrr', err)
-                throw err
-            }
-            const entry = manifest['index.html']
-            if (entry) {
-                cachedAssets = {
-                    js: `/client/${entry.file}`,
-                    css: entry.css?.[0] ? `/client/${entry.css[0]}` : ''
-                }
-                return cachedAssets
-            }
+    // Use imported manifest (embedded at build time)
+    const entry = manifest['index.html']
+    console.log('using imported manifest', manifest)
+    if (entry) {
+        cachedAssets = {
+            js: `/${entry.file}`,
+            css: entry.css?.[0] ? `/${entry.css?.[0]}` : ''
         }
-    } catch {
-        // Fall back to non-hashed paths
+        return cachedAssets
     }
 
+    // Fallback if manifest is empty (shouldn't happen in production)
     return { css: '/client/assets/index.css', js: '/client/assets/index.js' }
 }
