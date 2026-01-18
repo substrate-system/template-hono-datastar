@@ -28,6 +28,7 @@ export const Page:FC<PropsWithChildren<PageProps>> = ({
                 <link rel="stylesheet" href={cssPath} />
             </head>
             <body>
+                <div>is dev??? {isDev}</div>
                 <div id="root" data-signals={JSON.stringify(signals)}>
                     {children}
                 </div>
