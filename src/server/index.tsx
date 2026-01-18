@@ -2,6 +2,9 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { ServerSentEventGenerator } from '@starfederation/datastar-sdk/web'
 import { HomePage } from '../home-page.js'
+// Import manifest at build time
+// (placeholder exists before build, real manifest after client build)
+import manifestJson from '../../public/client/vite-manifest.json'
 
 type Bindings = {
     ASSETS:Fetcher
@@ -15,9 +18,6 @@ interface ViteManifest {
     }
 }
 
-// Import manifest at build time
-// (placeholder exists before build, real manifest after client build)
-import manifestJson from '../../public/client/vite-manifest.json'
 const manifest:ViteManifest = manifestJson
 
 // Cache the computed asset paths
