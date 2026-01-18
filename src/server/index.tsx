@@ -16,7 +16,7 @@ interface ViteManifest {
 }
 
 // Cache the manifest in memory
-let cachedAssets: { css:string, js:string } | null = null
+let cachedAssets:{ css:string, js:string }|null = null
 
 const app = new Hono<{ Bindings:Bindings }>()
 
@@ -32,7 +32,14 @@ app.get('/', async (c) => {
     }
 
     const assets = await getAssetPaths(c.env.ASSETS)
+    console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', assets)
     return c.html(<HomePage assets={assets} />)
+})
+
+app.get('/client/.vite/manifest.json', async (c) => {
+    const assets = c.env.ASSETS
+    const res = await assets.fetch(c.req.raw)
+    console.log('ressssssssssssssssssss', res)
 })
 
 /**
@@ -159,13 +166,26 @@ app.all('*', (c) => {
 export default app
 
 async function getAssetPaths (assets:Fetcher):Promise<{ css:string, js:string }> {
+    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', cachedAssets)
     if (cachedAssets) return cachedAssets
 
+    const url = new URL('/client/.vite/manifest.json', 'http://dev.assets')
+
+    console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
     try {
-        const manifestUrl = new URL('/client/.vite/manifest.json', 'https://dummy')
-        const res = await assets.fetch(manifestUrl.pathname)
+        const res = await assets.fetch(url)
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', res)
+        console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz')
         if (res.ok) {
-            const manifest = await res.json() as ViteManifest
+            let manifest:ViteManifest
+            try {
+                const text = await res.text()
+                console.log('the text......', text)
+                manifest = JSON.parse(text)
+            } catch (err) {
+                console.log('errrrrrrrrrrrrrrrrrrr', err)
+                throw err
+            }
             const entry = manifest['index.html']
             if (entry) {
                 cachedAssets = {

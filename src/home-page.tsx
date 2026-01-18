@@ -15,7 +15,7 @@ const signals = {
 
 interface HomePageProps {
     isDev?:boolean
-    assets?: { css:string, js:string }
+    assets?:{ css:string, js:string }
 }
 
 export const HomePage:FC<HomePageProps> = ({ isDev, assets }) => (

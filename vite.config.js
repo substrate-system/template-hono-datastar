@@ -36,13 +36,28 @@ export default defineConfig(({ mode }) => {
             host: true,
             open: true,
         },
-
         build: {
             cssMinify: 'lightningcss',
             target: 'esnext',
             minify: mode === 'production',
             outDir: './public',
             emptyOutDir: true,
+            environments: {
+                client: {
+                    build: {
+                        rollupOptions: {
+                            input: {
+                                main: 'index.html',
+                            }
+                        }
+                    }
+                }
+            },
+            // rollupOptions: {
+            //     input: {
+            //         main: 'index.html',
+            //     }
+            // },
             sourcemap: 'inline',
             manifest: true,
         }
