@@ -133,9 +133,11 @@ app.post('/api/quote', () => {
     const quotes = [
         '"The best way to predict the future is to invent it." — Alan Kay',
         '"Simplicity is the ultimate sophistication." — Leonardo da Vinci',
-        '"Any sufficiently advanced technology is indistinguishable from magic." — Arthur C. Clarke',
+        '"Any sufficiently advanced technology is ' +
+            'indistinguishable from magic." — Arthur C. Clarke',
         '"First, solve the problem. Then, write the code." — John Johnson',
-        '"Code is like humor. When you have to explain it, it\'s bad." — Cory House',
+        '"Code is like humor. When you have to explain it, ' +
+            'it\'s bad." — Cory House',
         '"The only way to do great work is to love what you do." — Steve Jobs',
         '"Talk is cheap. Show me the code." — Linus Torvalds'
     ]
