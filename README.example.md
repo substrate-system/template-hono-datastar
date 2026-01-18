@@ -1,13 +1,6 @@
-# template hono datastar
+# a project
 
-A template for [datastar apps](https://data-star.dev/) with
-[Hono](https://hono.dev/) and Cloudflare.
-
-There is no client-side JS here, except for the data-star library.
-This uses [Hono](https://hono.dev/) to keep any application state on the server
-(it uses in-memory state only), and clicks result in a request to the server,
-which sends back the updated data.
-
+Description here.
 
 <details><summary><h2>Contents</h2></summary>
 
@@ -54,7 +47,7 @@ The `@cloudflare/vite-plugin` embeds a Cloudflare Worker runtime inside Vite's
 dev server. 
 
 Vite gives us HMR and bundling. The Vite plugin runs the worker code, which
-is why the worker server works locally.
+is why the worker works locally.
 
 Vite builds to `public/`, but we do not use that folder during development.
 
@@ -69,6 +62,7 @@ When you run npm start, the Cloudflare Vite plugin routes requests to your
 Hono server at `src/server/index.tsx:126`, which renders the Page component.
 This Page component uses the `.tsx` components (TimestampCard, GreetingCard,
 CounterCard, QuoteCard) which are server-side rendered.
+
 
 ### `page.tsx`
 
