@@ -26,7 +26,7 @@
 		"run_worker_first": true  // try route matching on the server first
 	},
 	"vars": {
-		"NODE_ENV": "development",
+		"NODE_ENV": "production",
 		"DOMAIN": "template-hono-datastar.nichoth.workers.dev",
 	},
 	"observability": {
