@@ -90,11 +90,11 @@ app.post('/api/greet', async (c) => {
         'stranger'
     return ServerSentEventGenerator.stream(async (sse) => {
         const greetings = [
-            `Hello, ${name}!`,
-            `Welcome, ${name}!`,
-            `Greetings, ${name}!`,
-            `Hey there, ${name}!`,
-            `Nice to meet you, ${name}!`
+            `Hello, ${name}.`,
+            `Welcome, ${name}.`,
+            `Greetings, ${name}.`,
+            `Hey there, ${name}.`,
+            `Nice to meet you, ${name}.`
         ]
         const greeting = greetings[Math.floor(Math.random() * greetings.length)]
         sse.patchSignals(JSON.stringify({ greeting }))
