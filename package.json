@@ -5,9 +5,7 @@
   "main": "public/index.js",
   "scripts": {
     "lint": "eslint \"./**/*.{ts,js,tsx}\"",
-    "build-tests": "esbuild test/index.ts --bundle --format=cjs --keep-names > test/test-bundle.js",
     "test": "vitest run",
-    "copy": "mv ./public/client/vite-manifest.json",
     "build": "rm -rf ./public && mkdir -p ./public/client && echo '{}' > ./public/client/vite-manifest.json && vite build && vite build",
     "start": "vite",
     "toc": "markdown-toc --maxdepth 3 -i README.md",

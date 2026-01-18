@@ -77,3 +77,21 @@ An example is [./src/components/home-page.tsx](./src/components/home-page.tsx).
 * `data-signals` initializes the reactive state
 * Datastar library (loaded via CDN) handles client-side reactivity
 * API endpoints return SSE responses that update signals
+
+---
+
+## Notes
+
+I do not understand why we need to run `vite build` twice, but we do.
+
+The empty object in `public/client/cite-manifest.json` is necessary because
+the server depends on it when we run the build process.
+
+```js
+// package.json
+{
+  "scripts": {
+    "build": "rm -rf ./public && mkdir -p ./public/client && echo '{}' > ./public/client/vite-manifest.json && vite build && vite build",
+  }
+}
+```
