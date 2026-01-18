@@ -23,7 +23,7 @@ export const HomePage:FC<HomePageProps> = ({ isDev, assets }) => (
         <header class="hero">
             <h1>Datastar Demo</h1>
             <p class="subtitle">
-                Server-rendered HTML with reactive SSE updates
+                Server-rendered HTML with SSE updates
             </p>
         </header>
 
