@@ -21,6 +21,20 @@ which sends back the updated data.
 
 </details>
 
+## Test
+
+### Run tests
+
+```sh
+npm test
+```
+
+### Open a browser with visual test results
+
+```sh
+npm run test:ui
+```
+
 ## Develop
 
 Start a Vite server at `localhost:8888`.
