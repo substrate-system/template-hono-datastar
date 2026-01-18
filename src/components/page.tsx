@@ -16,7 +16,6 @@ export const Page:FC<PropsWithChildren<PageProps>> = ({
 }) => {
     // In dev, Vite serves the source file directly
     // In production, use the built assets (with content hash for caching)
-    console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqq', assets)
     const cssPath = assets?.css || (isDev ? '/src/style.css' : '/client/assets/index.css')
     const jsPath = assets?.js || (isDev ? '/src/client/index.ts' : '/client/assets/index.js')
 
