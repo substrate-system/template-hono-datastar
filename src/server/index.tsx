@@ -169,7 +169,6 @@ function getAssetPaths ():{ css:string, js:string } {
 
     // Use imported manifest (embedded at build time)
     const entry = manifest['index.html']
-    console.log('using imported manifest', manifest)
     if (entry) {
         cachedAssets = {
             js: `/${entry.file}`,
