@@ -16,11 +16,11 @@ export const CounterCard: FC = () => (
         </p>
         <div class="counter-display" {...{ 'data-text': '$count' }}></div>
         <div class="counter-buttons">
+            {/* Need to use spread syntax here b/c `:` is not allowed in JSX */}
             <button
                 class="btn"
                 {...{ 'data-on:click': "@post('/api/counter/decrement')" }}
             >&ndash;</button>
-            {/* Need to use spread syntax here b/c `:` is not allowed in JSX */}
             <button
                 class="btn"
                 {...{ 'data-on:click': "@post('/api/counter/reset')" }}

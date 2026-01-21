@@ -27,6 +27,7 @@ body {
     background: var(--color-bg);
     color: var(--color-text);
     line-height: 1.6;
+    margin-bottom: 20vh;
 
     & p {
         margin-bottom: 1rem;

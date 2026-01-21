@@ -3,13 +3,11 @@ import { Page } from './components/page.js'
 import { TimestampCard } from './components/timestamp-card.js'
 import { GreetingCard } from './components/greeting-card.js'
 import { CounterCard } from './components/counter-card.js'
-import { QuoteCard } from './components/quote-card.js'
 
 const signals = {
     count: 0,
     name: '',
     greeting: '',
-    quote: '',
     timestamp: ''
 }
 
@@ -36,7 +34,6 @@ export const HomePage:FC<HomePageProps> = ({ isDev, assets }) => (
             <TimestampCard />
             <GreetingCard />
             <CounterCard />
-            <QuoteCard />
         </main>
     </Page>
 )
