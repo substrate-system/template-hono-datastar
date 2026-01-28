@@ -66,7 +66,7 @@ or production. In dev, `ASSETS` doesn't exist; it returns `notFound()` and Vite
 handles it. In production, `ASSETS` does exist, so it serves the static asset.
 
 When you run npm start, the Cloudflare Vite plugin routes requests to your
-Hono server at `src/server/index.tsx:126`, which renders the Page component.
+Hono server at [`src/server/index.tsx:126`](./src/server/index.tsx#L126), which renders the Page component.
 This Page component uses the `.tsx` components (TimestampCard, GreetingCard,
 CounterCard, QuoteCard) which are server-side rendered.
 
