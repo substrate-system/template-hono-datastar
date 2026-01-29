@@ -1,4 +1,4 @@
-import { FC } from 'hono/jsx'
+import { type FC } from 'hono/jsx'
 import { Card } from './card'
 
 export const CounterCard: FC = () => (
@@ -14,6 +14,12 @@ export const CounterCard: FC = () => (
             </a>, by calling&nbsp;
             <code>ServerSentEventGenerator.stream</code>.
         </p>
+        <p>
+            Each click calls the Cloudflare backend, <code>
+                https://template-hono-datastar.nichoth.workers.dev/api/counter/increment
+            </code>.
+        </p>
+
         <div class="counter-display" {...{ 'data-text': '$count' }}></div>
         <div class="counter-buttons">
             {/* Need to use spread syntax here b/c `:` is not allowed in JSX */}

@@ -1,4 +1,4 @@
-import { FC } from 'hono/jsx'
+import { type FC } from 'hono/jsx'
 import { Page } from './components/page.js'
 import { TimestampCard } from './components/timestamp-card.js'
 import { GreetingCard } from './components/greeting-card.js'
