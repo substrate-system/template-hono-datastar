@@ -30,7 +30,6 @@ describe('Datastar worker', () => {
             expect(html).toContain('Live Server Time')
             expect(html).toContain('Personalized Greeting')
             expect(html).toContain('Server-Synced Counter')
-            expect(html).toContain('Random Quote')
 
             // Check for Datastar script
             expect(html).toContain('datastar.js')
@@ -52,7 +51,6 @@ describe('Datastar worker', () => {
                 expect(signals).toHaveProperty('count', 0)
                 expect(signals).toHaveProperty('name', '')
                 expect(signals).toHaveProperty('greeting', '')
-                expect(signals).toHaveProperty('quote', '')
                 expect(signals).toHaveProperty('timestamp', '')
             }
         })

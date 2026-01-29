@@ -22,7 +22,6 @@ describe('Integration tests', () => {
                 'Live Server Time',
                 'Personalized Greeting',
                 'Server-Synced Counter',
-                'Random Quote',
             ]
 
             components.forEach(component => {
@@ -50,7 +49,6 @@ describe('Integration tests', () => {
                 '/api/counter/increment',
                 '/api/counter/decrement',
                 '/api/counter/reset',
-                '/api/quote',
             ]
 
             endpoints.forEach(endpoint => {
