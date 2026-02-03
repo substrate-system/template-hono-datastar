@@ -46,7 +46,7 @@
     "tap-spec": "^5.0.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.0",
-    "vitest": "^3.2.4",
+    "vitest": "^4.0.17",
     "wrangler": "^4.56.0"
   },
   "author": "nichoth <nichoth@nichoth.com> (https://nichoth.com)"
